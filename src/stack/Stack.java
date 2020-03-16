@@ -36,7 +36,7 @@ public class Stack {
 		return expressionValue;
 	} //Fin de la mathode
 	
-	public char peak() {
+	public char peek() {
 		if (isEmpty()) {
 			System.out.println("La liste est vide");
 			return '\0';
@@ -46,5 +46,12 @@ public class Stack {
 	
 	public void deleteStack() {
 		list.setTete(null);
+	} //Fin de la methode
+	
+	public void displayStack(String s) {
+		System.out.println(s);
+		System.out.println("Stack (bottom --> top): ");
+		list.traverserLaLinkedList();
+		System.out.println("");
 	} //Fin de la methode
 } //Fin de la classe
