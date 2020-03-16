@@ -50,7 +50,7 @@ public class Stack {
 	
 	public void displayStack(String s) {
 		System.out.println(s);
-		System.out.println("Stack (bottom --> top): ");
+		System.out.println("Pile (dessous --> dessus): ");
 		list.traverserLaLinkedList();
 		System.out.println("");
 	} //Fin de la methode

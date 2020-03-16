@@ -33,16 +33,14 @@ public class InToPost {
 			case ')':
 				gotParen(ch);
 				break;
-			default:
-				String number = "";
-				int j = i;
-				while (ch >= '0' && ch <= 9) {
-					number += ch;
-					j++;
-					ch = input.charAt(j);
-				} //Fin de la boucle while
-				i = j - 1;
-				output += number + " ";
+			default :
+				output += (ch >= 48 && ch <= 57) ? ch : " ";
+				try {
+					char next = input.charAt(i + 1);
+					output += (next >=48 && ch <= 57) ? "" : " ";
+				} catch (Exception e) {
+					output += " ";
+				}
 				break;
 			} //Fin du switch case
 		} //Fin de la boucle for
@@ -61,26 +59,19 @@ public class InToPost {
 				theStack.push(opTop);
 				break;
 			} else {
-				int prec2;
+				int prec2 = 0;
 				if(opTop == '+' || opTop == '-')
 					prec2 = 1;
-				else if (opTop == '*' || opTop == '/') {
+				else if (opTop == '*' || opTop == '/') 
 					prec2 = 2;
-					if (prec2 < prec1) {
-						theStack.push(opTop);
-						break;
-					} else
-						output += opTop + " ";
-				} // Fin else-if
-				else { //Pour aller chercher le $ qui a la plus grande priorite
+				else //Pour le $
 					prec2 = 3;
-					if (prec2 < prec1) { //Pour le $
-						theStack.push(opTop);
-						break;
-					} else 
-						output += opTop + " ";
-				} //Fin du else
-			} //Fin du else externe
+				if (prec2 < prec1) {
+					theStack.push(opTop);
+					break;
+				} else
+					output += opTop + " ";
+			}
 		} //Fin du while
 		theStack.push(opThis);
 	} //Fin de la methode
@@ -88,10 +79,11 @@ public class InToPost {
 	public void gotParen(char ch) {
 		while (!theStack.isEmpty()) {
 			char chx = theStack.pop();
-			if (chx == '(') 
+			if (chx == '(') {
 				break;
+			}
 			else 
-				output += chx + " ";
+				output +=chx + " ";
 		} //Fin de la boucle while
 	} //Fin de la methode
 } //Fin de la classe
