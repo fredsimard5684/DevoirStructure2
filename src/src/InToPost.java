@@ -4,11 +4,11 @@ import stack.*;
 public class InToPost {
 	private String input;
 	private String output = "";
-	private Stack theStack;
+	private StackCharacter theStack;
 	
 	public InToPost(String in) {
 		input = in;
-		theStack = new Stack();
+		theStack = new StackCharacter();
 	} //Fin constructeur
 	
 	public String doTrans() {

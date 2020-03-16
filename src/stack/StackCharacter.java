@@ -1,11 +1,11 @@
 package stack;
 import linkedlist.*;
 
-public class Stack {
+public class StackCharacter {
 	private SingleLinkedList list;
 	
 	//Constructeur
-	public Stack() {
+	public StackCharacter() {
 		list = new SingleLinkedList();
 	}
 	
@@ -44,9 +44,17 @@ public class Stack {
 			return list.getTete().getValueChar();
 	} //Fin de la methode
 	
+	public String peekN(int location) {
+		return list.locationValue(location);
+	}
+	
 	public void deleteStack() {
 		list.setTete(null);
 	} //Fin de la methode
+	
+	public int size() {
+		return list.getSize();
+	}
 	
 	public void displayStack(String s) {
 		System.out.println(s);

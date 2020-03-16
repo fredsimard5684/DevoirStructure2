@@ -102,7 +102,6 @@ public class SingleLinkedList {
 	} //Fin de la methode
 	
 	//Rechercher un noeud avec sa valeur
-	
 	public boolean rechercherNode(char nodeValue) {
 		if (!existanceOfLinkedList()) {
 			System.out.println("La linked list n'existe pas.");
@@ -119,6 +118,19 @@ public class SingleLinkedList {
 		System.out.println("Le noeud n'a pas ete trouve.");
 		return false;
 	} //Fin de la methode
+	
+	public String locationValue(int location) {
+		if (!existanceOfLinkedList())
+			return "La liste n'existe pas";
+		SingleNode nodeTemporaire = tete;
+		for (int i = 0; i < getSize(); i++) {
+			System.out.print(nodeTemporaire.getValueChar() + " ");
+			nodeTemporaire = nodeTemporaire.getNext();
+			if (i == location - 1) 
+				return "" + nodeTemporaire.getValueChar();
+		} //Fin de la boucle
+		return "Location non disponible";
+	}
 	
 	public void deleteNode(int location) {
 		if (!existanceOfLinkedList()) {
