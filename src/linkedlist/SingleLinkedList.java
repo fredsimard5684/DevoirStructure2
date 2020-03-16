@@ -6,10 +6,10 @@ public class SingleLinkedList {
 	private int size;
 	
 	//Creation de la linked list
-	public SingleNode createSingleLinkedList (String nodeValue) {
+	public SingleNode createSingleLinkedList (char nodeValue) {
 		tete = new SingleNode();
 		SingleNode node = new SingleNode();
-		node.setValueString(nodeValue);
+		node.setValueChar(nodeValue);
 		node.setNext(null);
 		tete = node;
 		queue = node;
@@ -48,9 +48,9 @@ public class SingleLinkedList {
 	} //Fin de la methode
 	
 	//Insertion dans la linked list
-	public void insertionDansLinkedList(String nodeValue, int location) {
+	public void insertionDansLinkedList(char nodeValue, int location) {
 		SingleNode node = new SingleNode(); //Creation d'un nouveau noeud
-		node.setValueString(nodeValue); //Inserer la valeur du noeud
+		node.setValueChar(nodeValue); //Inserer la valeur du noeud
 		if (!existanceOfLinkedList()) { //Si la linked list n'esxiste pas 
 			System.out.println("La linked list n'existe pas.");
 			return;
@@ -89,7 +89,7 @@ public class SingleLinkedList {
 		}
 		SingleNode nodeTemporaire = tete;
 		for (int i = 0; i < getSize(); i++) {
-			System.out.print(nodeTemporaire.getValueString() + " ");
+			System.out.print(nodeTemporaire.getValueChar() + " ");
 			nodeTemporaire = nodeTemporaire.getNext();
 		} //Fin de la boucle
 	} //Fin de la methode
@@ -103,14 +103,14 @@ public class SingleLinkedList {
 	
 	//Rechercher un noeud avec sa valeur
 	
-	public boolean rechercherNode(String nodeValue) {
+	public boolean rechercherNode(char nodeValue) {
 		if (!existanceOfLinkedList()) {
 			System.out.println("La linked list n'existe pas.");
 			return false;
 		}
 		SingleNode nodeTemporaire = tete;
 		for (int i = 0; i < getSize(); i++) {
-			if (nodeTemporaire.getValueString().equals(nodeValue)) {
+			if (nodeTemporaire.getValueChar() == nodeValue) {
 				System.out.println("Le noeud a ete trouve a la position: "+ i +"");
 				return true;
 			} //Fin du if

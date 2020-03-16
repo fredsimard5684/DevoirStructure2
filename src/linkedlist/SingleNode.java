@@ -1,15 +1,15 @@
 package linkedlist;
 
 public class SingleNode {
-	private String valueString;
+	private char valueChar;
 	private SingleNode next;
 	
 	
-	public String getValueString() {
-		return valueString;
+	public char getValueChar() {
+		return valueChar;
 	}
-	public void setValueString(String valueString) {
-		this.valueString = valueString;
+	public void setValueChar(char valueChar) {
+		this.valueChar = valueChar;
 	}
 	public SingleNode getNext() {
 		return next;
@@ -20,6 +20,6 @@ public class SingleNode {
 	
 	@Override
 	public String toString() {
-		return valueString + "";
+		return valueChar + "";
 	}
  }

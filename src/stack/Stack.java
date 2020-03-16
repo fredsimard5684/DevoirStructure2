@@ -16,7 +16,7 @@ public class Stack {
 			return false;
 	} //Fin de la methode
 	
-	public void push(String expression) {
+	public void push(char expression) {
 		if (list.getTete() == null) { //Creer la linked list si ce n'est pas deja fait
 			list.createSingleLinkedList(expression);
 		} else { //Ajoute a la premiere position de la linked list. On fait cela car la pile est un LIFO
@@ -25,23 +25,23 @@ public class Stack {
 		System.out.println("L'expression a ete ajoute dans la pile.");
 	} //Fin de la methode
 	
-	public String pop() {
-		String expressionValue = null;
+	public char pop() {
+		char expressionValue = 0;
 		if (isEmpty()) {
 			System.out.println("Aucun item dans la pile");
 		} else {
-			expressionValue = list.getTete().getValueString(); //Retiens le noeud sur le dessus de la pile
+			expressionValue = list.getTete().getValueChar(); //Retiens le noeud sur le dessus de la pile
 			list.deleteNode(0); //On pop le noeud sur le dessus de la pile
 		}
 		return expressionValue;
 	} //Fin de la mathode
 	
-	public String peak() {
+	public char peak() {
 		if (isEmpty()) {
 			System.out.println("La liste est vide");
-			return null;
+			return '\0';
 		} else 
-			return list.getTete().getValueString();
+			return list.getTete().getValueChar();
 	} //Fin de la methode
 	
 	public void deleteStack() {
