@@ -48,6 +48,10 @@ public class StackCharacter {
 		return list.locationValue(location);
 	}
 	
+	public boolean searchStack(char ch) {
+		return list.searchNode(ch);
+	}
+	
 	public void deleteStack() {
 		list.setTete(null);
 	} //Fin de la methode

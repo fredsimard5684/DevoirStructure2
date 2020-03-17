@@ -22,7 +22,7 @@ public class EvaluatePostFix {
 		for (int i = 0; i < valueString.length; i++) {
 			characterSequence = valueString[i];
 			theStack.displayStack("" + characterSequence + " ");
-			if (characterSequence.matches("^[0-9]+$"))
+			if (characterSequence.matches("^[0-9]+$") || characterSequence.contains("."))
 				theStack.push(characterSequence);
 			else if (characterSequence.equals("$")) {
 				interAns = Double.parseDouble(theStack.pop());

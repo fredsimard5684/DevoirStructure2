@@ -1,5 +1,5 @@
 package src;
-import stack.*;
+import stack.StackCharacter;
 
 public class InToPost {
 	private String input;
@@ -34,13 +34,13 @@ public class InToPost {
 				gotParen(ch);
 				break;
 			default :
-				output += (ch >= 48 && ch <= 57) ? ch : " ";
+				output += ((ch >= 48 && ch <= 57) || ch == '.') ? ch : " ";
 				try {
 					char next = input.charAt(i + 1);
-					output += (next >=48 && ch <= 57) ? "" : " ";
+					output += ((next >=48 && ch <= 57)|| next == '.') ? "" : " ";
 				} catch (Exception e) {
 					output += " ";
-				}
+				} //Fin try-catch
 				break;
 			} //Fin du switch case
 		} //Fin de la boucle for

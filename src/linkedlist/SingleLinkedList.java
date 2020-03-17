@@ -102,20 +102,17 @@ public class SingleLinkedList {
 	} //Fin de la methode
 	
 	//Rechercher un noeud avec sa valeur
-	public boolean rechercherNode(char nodeValue) {
+	public boolean searchNode(char nodeValue) {
 		if (!existanceOfLinkedList()) {
-			System.out.println("La linked list n'existe pas.");
 			return false;
 		}
 		SingleNode nodeTemporaire = tete;
 		for (int i = 0; i < getSize(); i++) {
 			if (nodeTemporaire.getValueChar() == nodeValue) {
-				System.out.println("Le noeud a ete trouve a la position: "+ i +"");
 				return true;
 			} //Fin du if
 			nodeTemporaire = nodeTemporaire.getNext();
 		} //Fin de la boucle
-		System.out.println("Le noeud n'a pas ete trouve.");
 		return false;
 	} //Fin de la methode
 	
