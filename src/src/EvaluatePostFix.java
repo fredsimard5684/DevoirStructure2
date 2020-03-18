@@ -1,3 +1,9 @@
+// ***********************************************************************************************************************************************************************
+// EvaluatePostFix.java 			Auteurs: Simard, Mongeau, Desfosses
+// 
+// Ce fichier contient la classe EvaluatePostFix permettant de calculer le résultat d'une expression postfix. On utilise la pile avec array (StackString)
+// pour faire les opérations de push et pop.
+//********************************************************************************************************************************************************************
 package src;
 
 import java.text.DecimalFormat;
@@ -28,8 +34,7 @@ public class EvaluatePostFix {
 				interAns = Double.parseDouble(theStack.pop());
 				interAns = Math.sqrt(interAns);
 				theStack.push(String.valueOf(interAns));
-			}
-			else {
+			} else {
 				num2 = Double.parseDouble(theStack.pop());
 				num1 = Double.parseDouble(theStack.pop());
 
@@ -49,7 +54,7 @@ public class EvaluatePostFix {
 				default:
 					interAns = 0;
 					break;
-				} //Fin du switch
+				} // Fin du switch
 				theStack.push(String.valueOf(interAns));
 			} // Fin du else
 		} // Fin de la boucle for

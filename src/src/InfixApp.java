@@ -1,38 +1,49 @@
+// ***********************************************************************************************************************************************************************
+// InfixApp.java 			Auteurs: Simard, Mongeau, Desfosses
+// 
+// Ce fichier contient la classe InfixApp. C'est le programme principal. Celui-ci permet d'afficher à la console les expressions postfix et les
+// les résultats des équations Infix lu à partir d'un fichier input.
+//********************************************************************************************************************************************************************
 package src;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
 public class InfixApp {
 
 	public static void main(String[] args) throws IOException {
-		String gatherAllLineFromFile = getString();
+		String gatherAllLineFromFile = "";
 		String inputFromFile, inputWithoutWhiteSpace, outputPostFix, outputResult = "", outputConsole = "";
-		String[] readLine = gatherAllLineFromFile.split("\\r?\\n");
+		gatherAllLineFromFile = getString(); // Recupere dans un String les donnees du fichier
+		if (gatherAllLineFromFile.equals("")) // Si le fichier ne contient aucune donne, on termine le programme
+			return;
+		String[] readLine = gatherAllLineFromFile.split("\\r?\\n"); // Récupère sous forme de tableau les donnée
 		for (int i = 0; i < readLine.length; i++) {
 			inputFromFile = readLine[i]; // Enregistre la valeur avec les espaces de la ligne du fichier
 			inputWithoutWhiteSpace = readLine[i].replaceAll("\\s+", ""); // Remplace les lignes blanches
 			InToPost inToPost = new InToPost(inputWithoutWhiteSpace);
-			outputPostFix = inToPost.doTrans();
+			outputPostFix = inToPost.doTrans(); // Fait la conversion Infix à Postfix
 			if (outputPostFix.contains("(") || outputPostFix.contains(")"))
 				outputPostFix = "ERROR";
 			EvaluatePostFix evaluatePostFix = new EvaluatePostFix(outputPostFix);
 			try {
-				outputResult = evaluatePostFix.eval();
+				outputResult = evaluatePostFix.eval(); // Calcule la réponse du Postfix
 				if (outputResult.contains("\u221E") || outputResult.contains("NaN")) { // Le formatage(DecimalFormart)
 																						// d'infini résulte au caractère
 																						// ?.. Il faut donc aller
 																						// chercher son caractère
 																						// equivalent de formatage
 					outputResult = "ERROR";
-				}
+				} // Fin du if
 
 			} catch (ArrayIndexOutOfBoundsException e) {
 				e.printStackTrace();
-			}
-			outputConsole += inputFromFile + "\t|\t" + outputPostFix + "\t|\t" + outputResult + "\n";
+			} // Fin du bloc try-catch
+			outputConsole += inputFromFile + "\t|\t" + outputPostFix + "\t|\t" + outputResult + "\n"; // Va permettre
+																										// d'afficher
+																										// les résultats
+																										// à la console
 		}
 		System.out.println(outputConsole);
 	} // Fin du main
@@ -42,19 +53,18 @@ public class InfixApp {
 		BufferedReader br = new BufferedReader(isr);
 		String lines = "";
 		String inputString = "";
-		if (!br.ready()) {
+		if (!br.ready()) { // Si le BufferedReader n'a pas de fichier
 			System.out.println(
 					"Le programme s'est éteint car le fichier entré en System.in(Run configuration-->common-->System.in)\n"
 							+ "est innexistant ou contient un erreur rendant sa lecture impossible. Veuillez revoir le nom du fichier "
 							+ "dans la configuration du programme.");
-			System.exit(0);
+			throw new IOException();
 		}
-		try {
-			while (!(lines = br.readLine()).isEmpty())
-				inputString += lines + "\n";
-		} finally {
-			br.close();
-		}
+		while (!(lines = br.readLine()).isEmpty()) {
+			System.out.flush();
+			inputString += lines + "\n";
+		} // Fin de la boucle while
+		br.close();
 		return inputString;
 	} // Fin de la methode
 } // Fin de la classe
