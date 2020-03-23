@@ -15,9 +15,8 @@ public class InfixApp {
 	public static void main(String[] args) throws IOException {
 		String gatherAllLineFromFile = "";
 		String inputFromFile, inputWithoutWhiteSpace, outputPostFix, outputResult = "", outputConsole = "";
+		System.out.println("Veuillez entrer les vos équation infix et terminer en ajoutant une ligne vide:\n");
 		gatherAllLineFromFile = getString(); // Recupere dans un String les donnees du fichier
-		if (gatherAllLineFromFile.equals("")) // Si le fichier ne contient aucune donne, on termine le programme
-			return;
 		String[] readLine = gatherAllLineFromFile.split("\\r?\\n"); // Récupère sous forme de tableau les donnée
 		for (int i = 0; i < readLine.length; i++) {
 			inputFromFile = readLine[i]; // Enregistre la valeur avec les espaces de la ligne du fichier
@@ -39,12 +38,15 @@ public class InfixApp {
 
 			} catch (ArrayIndexOutOfBoundsException e) {
 				e.printStackTrace();
+				outputResult = "ERROR";
 			} // Fin du bloc try-catch
 			outputConsole += inputFromFile + "\t|\t" + outputPostFix + "\t|\t" + outputResult + "\n"; // Va permettre
 																										// d'afficher
 																										// les résultats
 																										// à la console
 		}
+		System.out.println("---------------------------------------------------------------------------------");
+		System.out.println("VOICI L'ENSEMBLE DES DONNÉES:");
 		System.out.println(outputConsole);
 	} // Fin du main
 
@@ -53,13 +55,7 @@ public class InfixApp {
 		BufferedReader br = new BufferedReader(isr);
 		String lines = "";
 		String inputString = "";
-		if (!br.ready()) { // Si le BufferedReader n'a pas de fichier
-			System.out.println(
-					"Le programme s'est éteint car le fichier entré en System.in(Run configuration-->common-->System.in)\n"
-							+ "est innexistant ou contient un erreur rendant sa lecture impossible. Veuillez revoir le nom du fichier "
-							+ "dans la configuration du programme.");
-			throw new IOException();
-		}
+		//Tant qu'il n'y a pas de lignes vides, on continue.
 		while (!(lines = br.readLine()).isEmpty()) {
 			System.out.flush();
 			inputString += lines + "\n";
