@@ -20,7 +20,7 @@ public class InfixApp {
 		gatherAllLine = getString(); // Recupere dans un String les donnees
 		String[] readLine = gatherAllLine.split("\\r?\\n"); // Récupère sous forme de tableau les donnée
 		for (int i = 0; i < readLine.length; i++) {
-			inputString = readLine[i]; // Enregistre la valeur avec les espaces de la ligne du fichier
+			inputString = readLine[i]; // Enregistre la valeur avec les espaces de la ligne
 			inputWithoutWhiteSpace = readLine[i].replaceAll("\\s+", ""); // Remplace les lignes blanches
 			InToPost inToPost = new InToPost(inputWithoutWhiteSpace);
 			outputPostFix = inToPost.doTrans(); // Fait la conversion Infix à Postfix
