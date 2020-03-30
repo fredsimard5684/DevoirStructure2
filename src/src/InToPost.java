@@ -9,7 +9,7 @@ import stack.StackCharacter;
 
 public class InToPost {
 	private String input;
-	private String output = "";
+	private StringBuilder output = new StringBuilder();
 	private StackCharacter theStack;
 
 	public InToPost(String in) {
@@ -40,27 +40,27 @@ public class InToPost {
 				gotParen(ch);
 				break;
 			default:
-				output += ((ch >= 48 && ch <= 57) || ch == '.') ? ch : " "; // Si ch est un nb ou un point, affiche le
+				output.append(((ch >= 48 && ch <= 57) || ch == '.') ? ch : " "); // Si ch est un nb ou un point, affiche le
 																			// caractère, sinon mettre un espace
 																			// Permet d'identifier et créer les 
 																			//nombres plus grand que 9.
 				try {
 					char next = input.charAt(i + 1);
-					output += ((next >= 48 && ch <= 57) || next == '.') ? "" : " "; // Si le prochain ch est un nb ou un
+					output.append(((next >= 48 && ch <= 57) || next == '.') ? "" : " "); // Si le prochain ch est un nb ou un
 																					// point, ne rien ajouter à output,
 																					// sinon mettre un espace
 				} catch (Exception e) {
-					output += " "; // S'il n'y a plus de caractère suivant, ajouter un espace
+					output.append(" "); // S'il n'y a plus de caractère suivant, ajouter un espace
 				} // Fin try-catch
 				break;
 			} // Fin du switch case
 		} // Fin de la boucle for
 		while (!theStack.isEmpty()) {
 			theStack.displayStack("Pendant ");
-			output += theStack.pop() + " ";
+			output.append(theStack.pop() + " ");
 		} // Fin de la boucle while
 		theStack.displayStack("Fin  ");
-		return output;
+		return output.toString();
 	} // Fin de la methode
 
 	public void gotOper(char opThis, int prec1) {
@@ -81,7 +81,7 @@ public class InToPost {
 					theStack.push(opTop);
 					break;
 				} else
-					output += opTop + " ";
+					output.append(opTop + " ");
 			}
 		} // Fin du while
 		theStack.push(opThis);
@@ -93,7 +93,7 @@ public class InToPost {
 			if (chx == '(') {
 				break;
 			} else
-				output += chx + " ";
+				output.append(chx + " ");
 		} // Fin de la boucle while
 	} // Fin de la methode
 } // Fin de la classe
