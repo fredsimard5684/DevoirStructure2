@@ -40,7 +40,7 @@ public class InToPost {
 				gotParen(ch);
 				break;
 			default:
-				output.append(((ch >= 48 && ch <= 57) || ch == '.') ? ch : " "); // Si ch est un nb ou un point, affiche le
+				output.append(((ch >= 48 && ch <= 57) || ch == '.') ? ch : " "); // Si ch est un nombre ou un point, affiche le
 																			// caractère, sinon mettre un espace
 																			// Permet d'identifier et créer les 
 																			//nombres plus grand que 9.
@@ -50,7 +50,7 @@ public class InToPost {
 																					// point, ne rien ajouter à output,
 																					// sinon mettre un espace
 				} catch (Exception e) {
-					output.append(" "); // S'il n'y a plus de caractère suivant, ajouter un espace
+					output.append(" "); // S'il n'y a plus de caractère suivant celui-ci, ajouter un espace  afin que le prochain caratère "Poper" ne soit pas collé
 				} // Fin try-catch
 				break;
 			} // Fin du switch case
